@@ -91,7 +91,8 @@ public class Sentence {
         return out.toString();
     }
 
-    public String[] getStringArray() {
-        return this.stringArray;
+    public String getStringOfArray() {
+        Sentence sent = new Sentence(this.stringArray);
+        return sent.toString();
     } //геттер для поля класса
 }
