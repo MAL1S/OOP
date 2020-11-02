@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5864ec9d-7d4f-46bb-a152-1ec81917a570" name="Default Changelist" comment="." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1iwt9cP24vpUwOMfU1mnBNgjmnt" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="3" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5864ec9d-7d4f-46bb-a152-1ec81917a570" name="Default Changelist" comment="" />
+      <created>1602830331405</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1602830331405</updated>
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1604117154243</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604117154243</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="682" y="93" key="#Code_Folding" timestamp="1604117117637">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="682" y="93" key="#Code_Folding/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1604117117637" />
+    <state x="734" y="256" key="#com.intellij.ide.util.MemberChooser" timestamp="1602832119700">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="734" y="256" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1602832119700" />
+    <state width="883" height="576" key="GridCell.Tab.0.bottom" timestamp="1604114929333">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="883" height="576" key="GridCell.Tab.0.bottom/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1604114929333" />
+    <state width="883" height="576" key="GridCell.Tab.0.center" timestamp="1604114929333">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="883" height="576" key="GridCell.Tab.0.center/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1604114929333" />
+    <state width="883" height="576" key="GridCell.Tab.0.left" timestamp="1604114929333">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="883" height="576" key="GridCell.Tab.0.left/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1604114929333" />
+    <state width="883" height="576" key="GridCell.Tab.0.right" timestamp="1604114929333">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state width="883" height="576" key="GridCell.Tab.0.right/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1604114929333" />
+    <state x="474" y="276" width="909" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1602839945374">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="474" y="276" width="909" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1602839945374" />
+    <state x="922" y="0" width="943" height="1087" key="dock-window-1" timestamp="1603726867189">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="922" y="0" width="943" height="1087" key="dock-window-1/0.0.1858.1080/212.-1080.1858.1080@0.0.1858.1080" timestamp="1603726867189" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
