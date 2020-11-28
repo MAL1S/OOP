@@ -7,6 +7,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        /*
         UniversityList UList = new UniversityList();
         UList.add("Иван", "Карбушев", "ИСТб-19-2");
         UList.add("Иван", "Егоров", "ИСТб-19-2");
@@ -38,5 +39,7 @@ public class Main {
         UList.remove(UList.indexOf("английский язык", "Наталья", "Иванцова", 22, 12, 8, 15));
         UList.showAttestation(); writeLine();
         UList.showMarks("Иван", "Карбушев", "ИСТб-19-2"); writeLine();
+        */
+        InteractMenu.startMenu();
     }
 }

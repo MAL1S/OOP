@@ -83,7 +83,7 @@ public class Challenge {
     }
 
     public void showList() {
-        int count = 0;
+        int count = 1;
         System.out.println("Аттестационный список:");
         for (var item : challengeList) {
             String testOrExam;

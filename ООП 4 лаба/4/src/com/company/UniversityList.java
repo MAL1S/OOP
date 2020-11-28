@@ -83,7 +83,7 @@ public class UniversityList {
 
     public void showStudents() {
         for (var student : students) {
-            System.out.printf("%s %s%n", student.getName(), student.getSurname());
+            System.out.printf("%s %s, %sn", student.getName(), student.getSurname(), student.getGroup());
         }
     }
 
