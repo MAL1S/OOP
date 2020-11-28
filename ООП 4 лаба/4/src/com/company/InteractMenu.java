@@ -9,6 +9,7 @@ public class InteractMenu {
     private final static UniversityList UL = new UniversityList();
 
     public static void startMenu() {
+        System.out.println();
         System.out.println("Что сделать со списком?");
         System.out.println("1 - добавить");
         System.out.println("2 - удалить");
@@ -17,7 +18,7 @@ public class InteractMenu {
         System.out.println("5 - показать оценки");
         System.out.println("0 - выйти");
 
-        String answer = getAnswer(Arrays.asList("1", "2", "3", "4", "0"));
+        String answer = getAnswer(Arrays.asList("1", "2", "3", "4", "5", "0"));
         startHub(answer);
     }
 
@@ -58,10 +59,16 @@ public class InteractMenu {
             case "4":
                 outputMenu();
                 break;
+            case "5":
+                showMarksMenu();
+                break;
+            case "0":
+                System.exit(0);
         }
     }
 
     private static void addMenu() {
+        System.out.println();
         System.out.println("1 - добавить аттестацию");
         System.out.println("2 - добавить студента");
         System.out.println("0 - назад");
@@ -79,6 +86,7 @@ public class InteractMenu {
     }
 
     private static void addAttestation() {
+        System.out.println();
         String examOrTest, subject, teacherName, teacherSurname;
         int day, month, hour, minute;
         System.out.print("экзамен или зачет? : "); examOrTest = in.nextLine();
@@ -94,6 +102,7 @@ public class InteractMenu {
     }
 
     private static void addStudent() {
+        System.out.println();
         String name, surname, group;
         System.out.print("имя студента : "); name = in.nextLine();
         System.out.print("фамилия студента : "); surname = in.nextLine();
@@ -103,6 +112,7 @@ public class InteractMenu {
     }
 
     private static void removeMenu() {
+        System.out.println();
         System.out.println("1 - удалить аттестацию");
         System.out.println("2 - удалить студента");
         System.out.println("0 - назад");
@@ -120,6 +130,7 @@ public class InteractMenu {
     }
 
     private static void removeAttestation() {
+        System.out.println();
         System.out.println("1 - по всем данным");
         System.out.println("2 - по предмету");
         System.out.println("3 - по преподавателю");
@@ -156,6 +167,8 @@ public class InteractMenu {
                 UL.remove(day, month);
                 break;
             case "5":
+                UL.showAttestation();
+                System.out.println();
                 System.out.print("номер : "); int index = checkIntegerInput();
                 UL.remove(index);
         }
@@ -163,8 +176,10 @@ public class InteractMenu {
     }
 
     private static void removeStudent() {
+        System.out.println();
         System.out.println("1 - по имени, фамилии и группе");
         System.out.println("2 - по группе");
+        System.out.println("3 - по номеру в списке");
         System.out.println("0 - назад");
         String name, surname, group;
 
@@ -180,11 +195,18 @@ public class InteractMenu {
                 System.out.print("группа : "); group = in.nextLine();
                 UL.removeStudent(group);
                 break;
+            case "3":
+                UL.showStudents();
+                System.out.println();
+                System.out.println("индекс : "); int index = checkIntegerInput();
+                UL.removeStudent(index);
+                break;
         }
         removeMenu();
     }
 
     private static void searchMenu() {
+        System.out.println();
         System.out.println("1 - найти аттестацию");
         System.out.println("2 - найти студента");
         System.out.println("0 - назад");
@@ -202,6 +224,7 @@ public class InteractMenu {
     }
 
     private static void searchAttestation() {
+        System.out.println();
         System.out.println("1 - по предмету");
         System.out.println("2 - по дню сдачи");
         System.out.println("3 - по преподавателю");
@@ -230,6 +253,7 @@ public class InteractMenu {
     }
 
     private static void searchStudent() {
+        System.out.println();
         String group;
         System.out.print("группа : "); group = in.nextLine();
         UL.findStudent(group);
@@ -237,6 +261,7 @@ public class InteractMenu {
     }
 
     private static void outputMenu() {
+        System.out.println();
         System.out.println("1 - вывести список аттестаций");
         System.out.println("2 - вывести список студентов");
         System.out.println("0 - назад");
@@ -256,12 +281,24 @@ public class InteractMenu {
     }
 
     private static void outputAttestation() {
+        System.out.println();
         UL.showAttestation();
         outputMenu();
     }
 
     private static void outputStudent() {
+        System.out.println();
         UL.showStudents();
         outputMenu();
+    }
+
+    private static void showMarksMenu() {
+        System.out.println();
+        String name, surname, group;
+        System.out.print("имя : "); name = in.nextLine();
+        System.out.print("фамилия : "); surname = in.nextLine();
+        System.out.print("группа : "); group = in.nextLine();
+        UL.showMarks(name, surname, group);
+        startMenu();
     }
 }

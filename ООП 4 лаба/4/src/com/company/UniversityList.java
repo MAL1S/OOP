@@ -79,16 +79,18 @@ public class UniversityList {
                 return;
             }
         }
+        System.out.println("Нет такого студента");
     }
 
     public void showStudents() {
         for (var student : students) {
-            System.out.printf("%s %s, %sn", student.getName(), student.getSurname(), student.getGroup());
+            System.out.printf("%s %s, %s%n", student.getName(), student.getSurname(), student.getGroup());
         }
     }
 
     public void remove(String subject, String teacherName, String teacherSurname, int day, int month, int hour, int minute) {
         challenges.remove(subject, teacherName, teacherSurname, day, month, hour, minute);
+
         updateExForStudents();
     }
 
@@ -141,11 +143,11 @@ public class UniversityList {
     }
 
     public void remove(int ind) {
-        if (challenges.challengeList.size() <= ind) {
+        if (challenges.challengeList.size() <= ind-1) {
             System.out.printf("Нет такой аттестации с индексом %d%n", ind);
             return;
         }
-        challenges.remove(ind);
+        challenges.remove(ind-1);
         updateExForStudents();
     }
 
@@ -175,19 +177,26 @@ public class UniversityList {
         else System.out.printf("Нет такой группы - %s%n", group);
     }
 
+    public void removeStudent(int index) {
+        students.remove(index);
+    }
+
     private void updateExForStudents() {
         for (var student : students) {
-            for (var item : challenges.challengeList) {
-                if (student.sessionMarks.get(item.getSubject()) == null) {
-                    student.sessionMarks.remove(item.getSubject());
+            List<String> keys = new ArrayList<>(student.sessionMarks.keySet());
+            for (String key : keys) {
+                if (challenges.indexOf(key) == -1) {
+                    student.sessionMarks.remove(key);
                 }
             }
         }
     }
 
+    /*
     public int indexOf(String subject, String teacherName, String teacherSurname, int day, int month, int hour, int minute) {
         return  challenges.indexOf(subject, teacherName, teacherSurname, day, month, hour, minute);
     }
+    */
 
     public void find(String subject) {
         challenges.find(subject);

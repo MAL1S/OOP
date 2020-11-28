@@ -46,6 +46,14 @@ public class Challenge {
         return -1;
     }
 
+    public int indexOf(String subject) {
+        for (var item : challengeList) {
+            if (item.getSubject().equals(subject))
+                return challengeList.indexOf(item);
+        }
+        return -1;
+    }
+
     public Attestation find(int day, int month) {
         for (var item : challengeList) {
             if (item.getDay() == day && item.getMonth() == month) {
