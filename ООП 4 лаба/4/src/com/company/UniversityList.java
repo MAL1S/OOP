@@ -29,12 +29,12 @@ public class UniversityList {
         setExams(student);
     }
 
-    public void add() {
+    /*public void add() {
         Random rnd = new Random();
         int num = rnd.nextInt(2);
         if (num == 1) challenges.challengeList.add(new Exam());
         else challenges.challengeList.add(new Test());
-    }
+    }*/
 
     private void setExams(Student student) {
         for (var exam : challenges.challengeList) {
@@ -178,6 +178,10 @@ public class UniversityList {
     }
 
     public void removeStudent(int index) {
+        if (students.size() <= index-1) {
+            System.out.printf("Нет такого студента с индексом %d%n", index);
+            return;
+        }
         students.remove(index);
     }
 
