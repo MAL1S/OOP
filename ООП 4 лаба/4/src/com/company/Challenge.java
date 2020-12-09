@@ -36,7 +36,7 @@ public class Challenge {
         challengeList.remove(ind);
     }
 
-    public int indexOf(String subject, String teacherName, String teacherSurname, int day, int month, int hour, int minute) {
+    /*public int indexOf(String subject, String teacherName, String teacherSurname, int day, int month, int hour, int minute) {
         for (var item : challengeList) {
             if (item.getSubject().equals(subject) && item.getTeacherName().equals(teacherName)
                     && item.getTeacherSurname().equals(teacherSurname) && item.getDay() == day && item.getMonth() == month
@@ -44,7 +44,7 @@ public class Challenge {
                 return challengeList.indexOf(item);
         }
         return -1;
-    }
+    }*/
 
     public int indexOf(String subject) {
         for (var item : challengeList) {
