@@ -183,7 +183,7 @@ public class InteractMenu {
         System.out.println("0 - назад");
         String name, surname, group;
 
-        String answer = getAnswer(Arrays.asList("1", "2", "0"));
+        String answer = getAnswer(Arrays.asList("1", "2", "3", "0"));
         switch (answer) {
             case "1":
                 System.out.print("имя : "); name = in.nextLine();
@@ -241,6 +241,7 @@ public class InteractMenu {
                 int day, month;
                 System.out.print("день : "); day = checkIntegerInput();
                 System.out.print("месяц : "); month = checkIntegerInput();
+                UL.find(day, month);
                 break;
             case "3":
                 String teacherName, teacherSurname;
