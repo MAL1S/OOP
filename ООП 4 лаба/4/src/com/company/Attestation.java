@@ -3,18 +3,14 @@ package com.company;
 import java.util.Random;
 
 public abstract class Attestation {
-    private String subject;
-    private int day;
-    private int month;
-    private int hour;
-    private int minute;
-    private String teacherName;
-    private String teacherSurname;
+    protected String subject;
+    protected int day;
+    protected int month;
+    protected int hour;
+    protected int minute;
+    protected String teacherName;
+    protected String teacherSurname;
     protected static Random rnd = new Random();
-    protected final static String[] subjects = new String[]{"ООП", "мобильная разработка", "компьютерная графика", "технологии программирования", "дискретная математика"};
-    protected final static String[] teacherNames = new String[]{"Татьяна", "Вадим", "Анастасия", "Зинаида",  "Людмила"};
-    protected final static String[] teacherSurnames = new String[]{"Маланова", "Аршинский", "Исаева", "Бахвалова",  "Носырева"};
-    protected static int counter = 0; //для определения фамилии и имени преподавателя
 
     public Attestation(String subject, int day, int month, int hour, int minute,
     String teacherName, String teacherSurname) {
