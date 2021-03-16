@@ -1,6 +1,6 @@
-package com.company;
+package Students.Attestion;
 
-public class Test extends Attestation implements Event {
+public class Test extends Attestation {
     private int ifPassed;
 
     public Test(String subject, String date, String teacherName) {
@@ -16,10 +16,5 @@ public class Test extends Attestation implements Event {
     @Override
     public String toString() {
         return "Зачет";
-    }
-
-    @Override
-    public void arrange(int auditoriumNumber, int maxPeopleNumber) {
-        System.out.printf("Зачет пройдет в аудитории %d вместительностью %d человек%n", auditoriumNumber, maxPeopleNumber);
     }
 }

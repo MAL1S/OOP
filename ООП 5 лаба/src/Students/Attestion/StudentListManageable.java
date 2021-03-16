@@ -1,6 +1,4 @@
-package com.company;
-
-import java.util.HashMap;
+package Students.Attestion;
 
 public interface StudentListManageable {
     void add(int index, Attestation attestation, String mark);

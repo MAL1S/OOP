@@ -1,8 +1,10 @@
-package com.company;
+package Students.Attestion;
 
-import javax.accessibility.AccessibleText;
+import Students.Attestion.Attestation;
+import Students.Attestion.Student;
+import Students.Attestion.StudentListManageable;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class StudentManager implements StudentListManageable {

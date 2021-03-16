@@ -1,4 +1,8 @@
-package com.company;
+package View;
+
+import Students.Attestion.Attestation;
+import Students.Attestion.Student;
+import Students.Attestion.StudentManager;
 
 import javax.swing.table.AbstractTableModel;
 

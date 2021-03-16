@@ -1,14 +1,13 @@
-package com.company;
+package View;
+
+import Students.Attestion.Attestation;
+import Students.Attestion.Exam;
+import Students.Attestion.Student;
+import Students.Attestion.Test;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.beans.PropertyChangeListener;
-import java.time.chrono.ChronoLocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 

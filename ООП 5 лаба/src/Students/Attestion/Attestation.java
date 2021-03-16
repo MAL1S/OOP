@@ -1,7 +1,4 @@
-package com.company;
-
-import java.util.Objects;
-import java.util.Random;
+package Students.Attestion;
 
 public abstract class Attestation {
     protected String subject;
