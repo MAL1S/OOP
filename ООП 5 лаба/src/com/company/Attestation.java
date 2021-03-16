@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.Objects;
 import java.util.Random;
 
 public abstract class Attestation {
@@ -33,5 +34,13 @@ public abstract class Attestation {
         this.teacherName = teacherName;
     }
 
-    //public abstract int pass();
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Attestation) {
+            return subject.equals(((Attestation) o).getSubject()) &&
+                    date.equals(((Attestation) o).getDate()) &&
+                    teacherName.equals(((Attestation) o).getTeacherName());
+        }
+        return false;
+    }
 }

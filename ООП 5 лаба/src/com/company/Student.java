@@ -7,22 +7,22 @@ import java.util.List;
 import java.util.Map;
 
 public class Student {
-    private String name;
-    private String surname;
+    private final String name;
+    private final String enrolDate;
+    private final String birthDate;
+    private final HashMap<Attestation, String> sessionMarks = new HashMap<>();
+    private String phoneNumber;
+    private String studentId;
     private String group;
-    private int passed = 0;
-    private int failed = 0;
-    private int examCount = 0;
-    private int sumOfMarks = 0;
-    private static int currentIndex = 0;
-//    public final List<String> typeOfAttestation = new ArrayList<>();
-//    public final List<String> subjects = new ArrayList<>();
-//    public final List<String> grades = new ArrayList<>();
-    public final Map<Attestation, String> sessionMarks = new HashMap<>();
 
-    public Student(String name, String group) {
+
+    public Student(String studentId, String name, String group, String enrolDate, String birthDate, String phoneNumber) {
+        this.studentId = studentId;
         this.name = name;
         this.group = group;
+        this.enrolDate = enrolDate;
+        this.birthDate = birthDate;
+        this.phoneNumber = phoneNumber;
     }
 
     public void setMark(Attestation attestation, String mark) {
@@ -33,10 +33,6 @@ public class Student {
         return name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
     public String getGroup() {
         return group;
     }
@@ -45,40 +41,31 @@ public class Student {
         this.group = group;
     }
 
-    public int getPassed() {
-        return passed;
+    public String getStudentId() {
+        return studentId;
     }
 
-    public void setPassed(int passed) {
-        this.passed = passed;
+    public String getEnrolDate() {
+        return enrolDate;
     }
 
-    public int getFailed() {
-        return failed;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setFailed(int failed) {
-        this.failed = failed;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public double getAvgMark() {
-        if (examCount == 0) return -1;
-        return (double)sumOfMarks / examCount;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public int getExamCount() {
-        return examCount;
+    public HashMap<Attestation, String> getSessionMarks() {
+        return sessionMarks;
     }
 
-    public void setExamCount(int examCount) {
-        this.examCount = examCount;
-    }
-
-    public int getSumOfMarks() {
-        return sumOfMarks;
-    }
-
-    public void setSumOfMarks(int sumOfMarks) {
-        this.sumOfMarks = sumOfMarks;
+    public void deleteAttestation(Attestation attestation) {
+        sessionMarks.remove(attestation);
     }
 }

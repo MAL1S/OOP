@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="891758fc-146e-4db3-a822-3cce313c16e3" name="Default Changelist" comment="added removing attestation from students when they are removed from list" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1kdQzlXr9lTv8JxD0jGm5ooxuN3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../1" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.company.Main" />
+      <module name="4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.company.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="891758fc-146e-4db3-a822-3cce313c16e3" name="Default Changelist" comment="" />
+      <created>1606028253793</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1606028253793</updated>
+    </task>
+    <task id="LOCAL-00001" summary=".">
+      <created>1606044022461</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606044022461</updated>
+    </task>
+    <task id="LOCAL-00002" summary=".">
+      <created>1606046103018</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606046103018</updated>
+    </task>
+    <task id="LOCAL-00003" summary="added user interface">
+      <created>1606539130370</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606539130370</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added removing attestation from students when they are removed from list">
+      <created>1606543924625</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606543924625</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="." />
+    <MESSAGE value="added user interface" />
+    <MESSAGE value="added removing attestation from students when they are removed from list" />
+    <option name="LAST_COMMIT_MESSAGE" value="added removing attestation from students when they are removed from list" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="586" y="203" key="#Inspections" timestamp="1606045977782">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="586" y="203" key="#Inspections/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1606045977782" />
+    <state x="765" y="209" key="#com.intellij.ide.util.MemberChooser" timestamp="1606033115071">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="765" y="209" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1606033115071" />
+    <state x="740" y="277" key="FileChooserDialogImpl" timestamp="1606550772244">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606444104481" />
+    <state x="740" y="277" key="FileChooserDialogImpl/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1606550772244" />
+    <state width="1877" height="108" key="GridCell.Tab.0.bottom" timestamp="1607532790257">
+      <screen x="212" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="914" height="891" key="GridCell.Tab.0.bottom/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1607528551255" />
+    <state width="1877" height="108" key="GridCell.Tab.0.bottom/0.0.1920.1050/212.-1080.1920.1050@212.-1080.1920.1050" timestamp="1607532790257" />
+    <state width="1877" height="108" key="GridCell.Tab.0.center" timestamp="1607532790257">
+      <screen x="212" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="914" height="891" key="GridCell.Tab.0.center/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1607528551255" />
+    <state width="1877" height="108" key="GridCell.Tab.0.center/0.0.1920.1050/212.-1080.1920.1050@212.-1080.1920.1050" timestamp="1607532790257" />
+    <state width="1877" height="108" key="GridCell.Tab.0.left" timestamp="1607532790257">
+      <screen x="212" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="914" height="891" key="GridCell.Tab.0.left/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1607528551255" />
+    <state width="1877" height="108" key="GridCell.Tab.0.left/0.0.1920.1050/212.-1080.1920.1050@212.-1080.1920.1050" timestamp="1607532790257" />
+    <state width="1877" height="108" key="GridCell.Tab.0.right" timestamp="1607532790257">
+      <screen x="212" y="-1080" width="1920" height="1050" />
+    </state>
+    <state width="914" height="891" key="GridCell.Tab.0.right/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1607528551255" />
+    <state width="1877" height="108" key="GridCell.Tab.0.right/0.0.1920.1050/212.-1080.1920.1050@212.-1080.1920.1050" timestamp="1607532790257" />
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2" timestamp="1606543932177">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="552" y="258" key="Vcs.Push.Dialog.v2/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1606543932177" />
+    <state x="342" y="204" key="new project wizard" timestamp="1613477354731">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="342" y="202" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1606443987209" />
+    <state x="342" y="204" key="new project wizard/0.0.1920.1050/212.-1080.1920.1050@0.0.1920.1050" timestamp="1613477354731" />
+  </component>
+</project>
