@@ -84,7 +84,7 @@ public class StudentTableModel extends AbstractTableModel {
         super.setValueAt(aValue, rowIndex, columnIndex);
     }
 
-    public Student getStudentList(int index) {
+    public Student getStudent(int index) {
         return studentList.get(index);
     }
 

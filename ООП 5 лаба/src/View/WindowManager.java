@@ -4,10 +4,11 @@ import Students.Attestion.Attestation;
 import Students.Attestion.Exam;
 import Students.Attestion.Student;
 import Students.Attestion.Test;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 
 
@@ -22,7 +23,6 @@ public class WindowManager extends JFrame {
     int rowCount;
     public final int COLUMN_COUNT = 6;
     Vector<Vector<String>> values;
-    Vector<Student> studentData = new Vector<>();
     StudentTableModel model;
     MarksTableModel markModel;
 
@@ -74,6 +74,7 @@ public class WindowManager extends JFrame {
         addAtButton = new JButton("Добавить запись о аттестации");
         addAtButton.addActionListener(new addAttestationButtonListener());
         showAtButton = new JButton("....");
+        showAtButton.addActionListener(new search());
 
         //добавление кнопок
         rightPanel.add(addButton);
@@ -198,6 +199,17 @@ public class WindowManager extends JFrame {
             buttonApply.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    if (personalId.getText().equals("") ||
+                            name.getText().equals("") ||
+                            groupId.getText().equals("") ||
+                            enrolDate.getText().equals("") ||
+                            mobileNumber.getText().equals("") ||
+                            birthDate.getText().equals(""))
+                    {
+                        JOptionPane.showMessageDialog(frame, "Не все поля заполнены");
+                        return;
+                    }
+
                     Student student = new Student(personalId.getText(),
                             name.getText(),
                             groupId.getText(),
@@ -364,6 +376,16 @@ public class WindowManager extends JFrame {
             apply.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    if (attestationType.getText().equals("") ||
+                            grade.getText().equals("") ||
+                            subject.getText().equals("") ||
+                            date.getText().equals("") ||
+                            teacherName.getText().equals(""))
+                    {
+                        JOptionPane.showMessageDialog(frame, "Вы не выбрали запись");
+                        return;
+                    }
+
                     Attestation attestation;
                     if (attestationType.getText().equals("экзамен")) {
                         attestation = new Exam(subject.getText(), date.getText(), teacherName.getText());
@@ -436,6 +458,111 @@ public class WindowManager extends JFrame {
             setLocationRelativeTo(null);
             setTitle("Оценки");
             setSize(600, 600);
+            setVisible(true);
+        }
+    }
+
+    private class search extends JFrame implements ActionListener {
+        JTextField id, name, group, enrolDate, phoneNumber, birthDate;
+        JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
+        JButton apply, cancel;
+        List<Integer> rows = new ArrayList<>();
+
+        public boolean checkOccurrence(String tableData, String mask) {
+            String[] arr = mask.split("\\*");
+            boolean check = true;
+            for (var item : arr) {
+                if (tableData.contains(item)) {
+                    tableData = tableData.substring(tableData.indexOf(item) + item.length());
+                } else {
+                    check = false;
+                    break;
+                }
+            }
+            return check;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            setTitle("Найти записи");
+            GridLayout grid = new GridLayout(7, 2);
+            grid.setVgap(10);
+            JPanel searchPanel = new JPanel(grid);
+
+            idL = new JLabel("Зачетный номер");
+            nameL = new JLabel("ФИО");
+            groupIdL = new JLabel("Шифр группы");
+            enrolL = new JLabel("Дата поступления");
+            phoneL = new JLabel("Номер телефона");
+            birthL = new JLabel("Дата рождения");
+
+            id = new JTextField();
+
+            name = new JTextField();
+
+            group = new JTextField();
+
+            enrolDate = new JTextField();
+
+            phoneNumber = new JTextField();
+
+            birthDate = new JTextField();
+
+
+            apply = new JButton("Принять");
+            apply.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    String t1T = id.getText();
+                    String t2T = name.getText();
+                    String t3T = group.getText();
+                    String t4T = enrolDate.getText();
+                    String t5T = phoneNumber.getText();
+                    String t6T = birthDate.getText();
+
+                    for (int i = 0; i < model.getRowCount(); i++) {
+                        Student student = model.getStudent(i);
+                        if (checkOccurrence(student.getStudentId(), t1T) &&
+                                checkOccurrence(student.getName(), t2T) &&
+                                checkOccurrence(student.getGroup(), t3T) &&
+                                checkOccurrence(student.getEnrolDate(), t4T) &&
+                                checkOccurrence(student.getPhoneNumber(), t5T) &&
+                                checkOccurrence(student.getBirthDate(), t6T))
+                        {
+                            rows.add(i);
+                            System.out.println(i);
+                        }
+                        dispose();
+                    }
+                }
+            });
+
+            cancel = new JButton("Отмена");
+            cancel.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
+
+            searchPanel.add(idL);
+            searchPanel.add(id);
+            searchPanel.add(nameL);
+            searchPanel.add(name);
+            searchPanel.add(groupIdL);
+            searchPanel.add(group);
+            searchPanel.add(enrolL);
+            searchPanel.add(enrolDate);
+            searchPanel.add(phoneL);
+            searchPanel.add(phoneNumber);
+            searchPanel.add(birthL);
+            searchPanel.add(birthDate);
+            searchPanel.add(apply);
+            searchPanel.add(cancel);
+
+            setContentPane(searchPanel);
+            setSize(400, 300);
+            setResizable(false);
             setVisible(true);
         }
     }

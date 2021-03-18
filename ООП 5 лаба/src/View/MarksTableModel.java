@@ -47,7 +47,7 @@ public class MarksTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Student st = mainModel.getStudentList(index);
+        Student st = mainModel.getStudent(index);
         HashMap<Attestation, String> marks = st.getSessionMarks();
         List<Attestation> keys = new ArrayList<>(marks.keySet());
         Attestation at = keys.get(rowIndex);
