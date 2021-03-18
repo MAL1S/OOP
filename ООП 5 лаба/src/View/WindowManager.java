@@ -20,9 +20,13 @@ public class WindowManager extends JFrame {
     JPanel panel, rightPanel;
     JButton addButton, removeButton, editButton, gradesButton, addAtButton, showAtButton;
     JScrollPane scrollPane;
-    int rowCount;
-    public final int COLUMN_COUNT = 6;
-    Vector<Vector<String>> values;
+    String[] days28 = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28".split(" ");
+    String[] days30 = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30".split(" ");
+    String[] days31 = "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23".split(" ");
+    String[] months = "01 02 03 04 05 06 07 08 09 10 11 12".split(" ");
+    String[] years = ("90 91 92 93 94 95 96 97 98 99 01 02 03 04 05 06 07 08 09 10 " +
+            "11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30").split(" ");
+
     StudentTableModel model;
     MarksTableModel markModel;
 
@@ -168,9 +172,11 @@ public class WindowManager extends JFrame {
 //    }
 //
     private class addButtonListener extends JFrame implements ActionListener  {
-        private JTextField personalId, name, groupId, enrolDate, mobileNumber, birthDate;
-        private JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
+        JTextField personalId, name, groupId, enrolDate, mobileNumber, birthDate;
+        JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
+        JLabel dots;
         JButton buttonApply, buttonCancel;
+        //JComboBox boxDays, boxMonths, boxYears;
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -186,9 +192,38 @@ public class WindowManager extends JFrame {
             phoneL = new JLabel("Номер телефона");
             birthL = new JLabel("Дата рождения");
 
+//            boxDays = new JComboBox<>(days31);
+//            boxMonths = new JComboBox<>(months);
+//            boxYears = new JComboBox<>(years);
+//            dots = new JLabel(":");
 
             //поля ввода
             personalId = new JTextField(10);
+            personalId.addKeyListener(new KeyListener() {
+                @Override
+                public void keyTyped(KeyEvent e) {
+                    if (personalId.getText().length() > 7) personalId.setText(personalId.getText().substring(0, 7));
+                }
+
+                @Override
+                public void keyPressed(KeyEvent e) {
+
+                }
+
+                @Override
+                public void keyReleased(KeyEvent e) {
+                    if ((personalId.getText().length() == 2 || personalId.getText().length() == 5)
+                            && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+                        personalId.setText(personalId.getText() + ":");
+                    }
+                }
+            });
+            personalId.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    name.setText("123123");
+                }
+            });
             name = new JTextField(40);
             groupId = new JTextField(8);
             enrolDate = new JTextField(8);
@@ -228,7 +263,6 @@ public class WindowManager extends JFrame {
                     dispose();
                 }
             });
-
 
             addPanel.add(idL);
             addPanel.add(personalId);
@@ -469,17 +503,34 @@ public class WindowManager extends JFrame {
         List<Integer> rows = new ArrayList<>();
 
         public boolean checkOccurrence(String tableData, String mask) {
+            if (mask.equals("")) return true;
+            tableData = tableData.toLowerCase();
+            mask = mask.toLowerCase();
+            boolean isFirstStar = mask.charAt(0) == '*';
+            boolean isLastStar = mask.charAt(mask.length()-1) == '*';
             String[] arr = mask.split("\\*");
-            boolean check = true;
+
+            if (!isFirstStar) {
+                for (int i = 0; i < arr[0].length(); i++) {
+                    if (tableData.charAt(i) != arr[0].charAt(i)) return false;
+                }
+            }
+            if (!isLastStar) {
+                for (int i = tableData.length()-1, j = arr[arr.length-1].length()-1;
+                     i > tableData.length()-1-arr[arr.length-1].length();
+                     i--, j--)
+                {
+                    if (tableData.charAt(i) != arr[arr.length-1].charAt(j)) return false;
+                }
+            }
             for (var item : arr) {
                 if (tableData.contains(item)) {
                     tableData = tableData.substring(tableData.indexOf(item) + item.length());
                 } else {
-                    check = false;
-                    break;
+                    return false;
                 }
             }
-            return check;
+            return true;
         }
 
         @Override

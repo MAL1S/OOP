@@ -8,8 +8,8 @@ public class Student {
     private final String enrolDate;
     private final String birthDate;
     private final HashMap<Attestation, String> sessionMarks = new HashMap<>();
+    private final String studentId;
     private String phoneNumber;
-    private String studentId;
     private String group;
 
 
