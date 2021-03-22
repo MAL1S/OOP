@@ -13,7 +13,7 @@ public class Student {
     private String group;
 
 
-    public Student(String studentId, String name, String group, String enrolDate, String birthDate, String phoneNumber) {
+    public Student(String studentId, String name, String group, String enrolDate, String phoneNumber, String birthDate) {
         this.studentId = studentId;
         this.name = name;
         this.group = group;

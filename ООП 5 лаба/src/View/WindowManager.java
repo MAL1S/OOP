@@ -5,6 +5,7 @@ import Students.Attestion.Exam;
 import Students.Attestion.Student;
 import Students.Attestion.Test;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -175,10 +176,10 @@ public class WindowManager extends JFrame {
             name = new JTextField(40);
             groupId = new JTextField(8);
             enrolDate = new JTextField(8);
-            enrolDate.addKeyListener(new DataKeyAdapter());
+            enrolDate.addKeyListener(new DateKeyAdapter());
             mobileNumber = new JTextField(11);
             birthDate = new JTextField(8);
-            birthDate.addKeyListener(new DataKeyAdapter());
+            birthDate.addKeyListener(new DateKeyAdapter());
             fieldsActionsInit();
 
             buttonApply = new JButton("Принять");
@@ -194,6 +195,12 @@ public class WindowManager extends JFrame {
                     {
                         JOptionPane.showMessageDialog(frame, "Не все поля заполнены");
                         return;
+                    }
+                    for (var item : name.getText().toCharArray()) {
+                        if (isNumber(item) != -1) {
+                            JOptionPane.showMessageDialog(frame, "В поле имени или названия введены числа");
+                            return;
+                        }
                     }
 
                     Student student = new Student(personalId.getText(),
@@ -315,18 +322,24 @@ public class WindowManager extends JFrame {
             groupId.setText((String) model.getValueAt(row, 2));
             enrolDate = new JTextField(8);
             enrolDate.setText((String) model.getValueAt(row, 3));
-            enrolDate.addKeyListener(new DataKeyAdapter());
+            enrolDate.addKeyListener(new DateKeyAdapter());
             mobileNumber = new JTextField(11);
             mobileNumber.setText((String) model.getValueAt(row, 4));
             birthDate = new JTextField(8);
             birthDate.setText((String) model.getValueAt(row, 5));
-            birthDate.addKeyListener(new DataKeyAdapter());
+            birthDate.addKeyListener(new DateKeyAdapter());
             fieldsActionsInit();
 
             buttonApply = new JButton("Принять");
             buttonApply.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    for (var item : name.getText().toCharArray()) {
+                        if (isNumber(item) != -1) {
+                            JOptionPane.showMessageDialog(frame, "В поле имени или названия введены числа");
+                            return;
+                        }
+                    }
                     Student student = new Student(personalId.getText(),
                             name.getText(),
                             groupId.getText(),
@@ -420,7 +433,7 @@ public class WindowManager extends JFrame {
             grade = new JTextField(5);
             subject = new JTextField(30);
             date = new JTextField(8);
-            date.addKeyListener(new DataKeyAdapter());
+            date.addKeyListener(new DateKeyAdapter());
             teacherName = new JTextField(40);
             fieldsActionsInit();
 
@@ -442,6 +455,18 @@ public class WindowManager extends JFrame {
                     {
                         JOptionPane.showMessageDialog(frame, "Вы не выбрали запись");
                         return;
+                    }
+                    for (var item : subject.getText().toCharArray()) {
+                        if (isNumber(item) != -1) {
+                            JOptionPane.showMessageDialog(frame, "В поле имени или названия введены числа");
+                            return;
+                        }
+                    }
+                    for (var item : teacherName.getText().toCharArray()) {
+                        if (isNumber(item) != -1) {
+                            JOptionPane.showMessageDialog(frame, "В поле имени или названия введены числа");
+                            return;
+                        }
                     }
 
                     Attestation attestation;
@@ -686,7 +711,9 @@ public class WindowManager extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
             JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(filter);
             if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 try (FileWriter fw = new FileWriter(fc.getSelectedFile())) {
                     writeToFile(fw);
@@ -701,7 +728,9 @@ public class WindowManager extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("TEXT FILES", "txt", "text");
             JFileChooser fc = new JFileChooser();
+            fc.setFileFilter(filter);
             if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 try (FileReader fr = new FileReader(fc.getSelectedFile())) {
                     readFromFile(fr);
@@ -759,15 +788,14 @@ public class WindowManager extends JFrame {
                 if (studLine) {
                     for (int i = 0; i < model.getRowCount(); i++) {
                         Student s = model.getStudent(i);
-                        System.out.println(s.getName());
                     }
                     model.add(new Student(
                             studentData[0],
-                            studentData[1],
-                            studentData[2],
-                            studentData[3],
+                            studentData[1] + " " + studentData[2] + " " + studentData[3],
                             studentData[4],
-                            studentData[5]
+                            studentData[5],
+                            studentData[6],
+                            studentData[7]
                     ));
                     studLine = false;
                 }
@@ -783,7 +811,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class DataKeyAdapter extends KeyAdapter {
+    private class DateKeyAdapter extends KeyAdapter {
         @Override
         public void keyTyped(KeyEvent e) {
             if (((JTextField)e.getSource()).getText().length() > 7) ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText().substring(0, 7));
@@ -836,6 +864,11 @@ public class WindowManager extends JFrame {
             result = -1;
         }
         return result;
+    }
+
+    private int isNumber(char charToCheck) {
+        if (charToCheck < 48 || charToCheck > 57) return -1;
+        return charToCheck;
     }
 }
 
