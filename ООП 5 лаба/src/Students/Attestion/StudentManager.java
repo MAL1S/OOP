@@ -16,6 +16,7 @@ public class StudentManager implements StudentListManageable {
 
     @Override
     public void add(int index, Attestation attestation, String mark) {
+        System.out.println(studentList.size());
         Student student = studentList.get(index);
         student.setMark(attestation, mark);
     }
@@ -58,5 +59,10 @@ public class StudentManager implements StudentListManageable {
     @Override
     public void set(int index, Student student) {
         studentList.set(index, student);
+    }
+
+    @Override
+    public void clearAll() {
+        studentList.clear();
     }
 }

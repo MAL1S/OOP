@@ -14,4 +14,6 @@ public interface StudentListManageable {
     Student get(int index);
 
     void set(int index, Student student);
+
+    void clearAll();
 }

@@ -110,4 +110,9 @@ public class StudentTableModel extends AbstractTableModel {
     public int getMarksCount(int index) {
         return studentList.get(index).getSessionMarks().size();
     }
+
+    public void clearAll() {
+        studentList.clearAll();
+        fireTableDataChanged();
+    }
 }
