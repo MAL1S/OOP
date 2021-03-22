@@ -7,12 +7,6 @@ public class Exam extends Attestation {
         super(subject, date, teacherName);
     }
 
-//    @Override
-//    public int pass() {
-//        mark = rnd.nextInt(5) + 1;
-//        return mark;
-//    }
-
     @Override
     public String toString() {
         return "Экзамен";

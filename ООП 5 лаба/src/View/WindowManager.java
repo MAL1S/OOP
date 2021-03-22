@@ -5,11 +5,9 @@ import Students.Attestion.Exam;
 import Students.Attestion.Student;
 import Students.Attestion.Test;
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.rmi.activation.ActivationInstantiator;
 import java.util.*;
 import java.util.List;
 
@@ -24,8 +22,12 @@ public class WindowManager extends JFrame {
     MarksTableModel markModel;
 
     public WindowManager() {
-        //init();
-        frame = new JFrame("Студенты");
+        init();
+    }
+
+    private void init() {
+        frame = new JFrame();
+        setTitle("Студенты");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         panel = new JPanel();
@@ -33,10 +35,10 @@ public class WindowManager extends JFrame {
         rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(8, 1));
 
-        addButton = new JButton("Add");
+        addButton = new JButton("Add student");
         addButton.setPreferredSize(new Dimension(121, 50));
-        addButton.addActionListener(new addButtonListener());
-        removeButton = new JButton("Remove");
+        addButton.addActionListener(new AddButtonListener());
+        removeButton = new JButton("Remove student");
         removeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -48,18 +50,18 @@ public class WindowManager extends JFrame {
                 model.remove(row);
             }
         });
-        editButton = new JButton("Edit");
-        editButton.addActionListener(new editButtonListener());
+        editButton = new JButton("Edit student");
+        editButton.addActionListener(new EditButtonListener());
         gradesButton = new JButton("Show grades");
-        gradesButton.addActionListener(new showMarksButtonListener());
+        gradesButton.addActionListener(new ShowMarksButtonListener());
         addAtButton = new JButton("Add attestation");
-        addAtButton.addActionListener(new addAttestationButtonListener());
+        addAtButton.addActionListener(new AddAttestationButtonListener());
         showAtButton = new JButton("Find students by mask");
-        showAtButton.addActionListener(new search());
-        readButton = new JButton("read data from file");
-        readButton.addActionListener(new readFileSelector());
-        writeButton = new JButton("write data to file");
-        writeButton.addActionListener(new writeFileSelector());
+        showAtButton.addActionListener(new SearchButtonListener());
+        readButton = new JButton("Read data from file");
+        readButton.addActionListener(new ReadFileSelector());
+        writeButton = new JButton("Write data to file");
+        writeButton.addActionListener(new WriteFileSelector());
 
         //добавление кнопок
         rightPanel.add(addButton);
@@ -92,7 +94,7 @@ public class WindowManager extends JFrame {
         setVisible(true);
     }
 
-    private class addButtonListener extends JFrame implements ActionListener  {
+    private class AddButtonListener extends JFrame implements ActionListener  {
         JTextField personalId, name, groupId, enrolDate, mobileNumber, birthDate;
         JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
         JButton buttonApply, buttonCancel;
@@ -170,33 +172,13 @@ public class WindowManager extends JFrame {
 
 
             personalId = new JTextField(10);
-//            personalId.addKeyListener(new KeyListener() {
-//                @Override
-//                public void keyTyped(KeyEvent e) {
-//                    if (personalId.getText().length() > 7) personalId.setText(personalId.getText().substring(0, 7));
-//                }
-//
-//                @Override
-//                public void keyPressed(KeyEvent e) {
-//                    if (e.getKeyCode() < 48 || e.getKeyCode() >57) {
-//                        personalId.setText(personalId.getText().substring(0, personalId.getText().length()-2));
-//                    }
-//                    if ((personalId.getText().length() == 2 || personalId.getText().length() == 5)
-//                            && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
-//                        personalId.setText(personalId.getText() + ":");
-//                    }
-//                }
-//
-//                @Override
-//                public void keyReleased(KeyEvent e) {
-//
-//                }
-//            });
             name = new JTextField(40);
             groupId = new JTextField(8);
             enrolDate = new JTextField(8);
+            enrolDate.addKeyListener(new DataKeyAdapter());
             mobileNumber = new JTextField(11);
             birthDate = new JTextField(8);
+            birthDate.addKeyListener(new DataKeyAdapter());
             fieldsActionsInit();
 
             buttonApply = new JButton("Принять");
@@ -239,7 +221,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class editButtonListener extends JFrame implements ActionListener {
+    private class EditButtonListener extends JFrame implements ActionListener {
         JTextField personalId, name, groupId, enrolDate, mobileNumber, birthDate;
         JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
         JButton buttonApply, buttonCancel;
@@ -265,6 +247,45 @@ public class WindowManager extends JFrame {
             editPanel.add(buttonCancel);
 
             setContentPane(editPanel);
+        }
+
+        public void fieldsActionsInit() {
+            personalId.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
+            name.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
+            groupId.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
+            enrolDate.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
+            mobileNumber.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
+            birthDate.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    buttonApply.doClick();
+                }
+            });
         }
 
         @Override
@@ -294,10 +315,13 @@ public class WindowManager extends JFrame {
             groupId.setText((String) model.getValueAt(row, 2));
             enrolDate = new JTextField(8);
             enrolDate.setText((String) model.getValueAt(row, 3));
+            enrolDate.addKeyListener(new DataKeyAdapter());
             mobileNumber = new JTextField(11);
             mobileNumber.setText((String) model.getValueAt(row, 4));
             birthDate = new JTextField(8);
             birthDate.setText((String) model.getValueAt(row, 5));
+            birthDate.addKeyListener(new DataKeyAdapter());
+            fieldsActionsInit();
 
             buttonApply = new JButton("Принять");
             buttonApply.addActionListener(new ActionListener() {
@@ -328,9 +352,10 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class addAttestationButtonListener extends JFrame implements ActionListener {
+    private class AddAttestationButtonListener extends JFrame implements ActionListener {
         JLabel at, sub, gr, da, teacher;
-        JTextField attestationType, subject, grade, date, teacherName;
+        JTextField subject, grade, date, teacherName;
+        JComboBox<String> attestationType;
         JPanel aaPanel;
         JButton apply, cancel;
         int row;
@@ -355,6 +380,33 @@ public class WindowManager extends JFrame {
             setContentPane(aaPanel);
         }
 
+        public void fieldsActionsInit() {
+            subject.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            grade.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            date.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            teacherName.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             row = table.getSelectedRow();
@@ -363,11 +415,14 @@ public class WindowManager extends JFrame {
                 return;
             }
 
-            attestationType = new JTextField(7);
+            attestationType = new JComboBox<>(new String[]{"экзамен", "зачет"});
+            attestationType.setSelectedItem("экзамен");
             grade = new JTextField(5);
             subject = new JTextField(30);
             date = new JTextField(8);
+            date.addKeyListener(new DataKeyAdapter());
             teacherName = new JTextField(40);
+            fieldsActionsInit();
 
             at = new JLabel("Форма аттестации");
             sub = new JLabel("Предмет");
@@ -380,8 +435,7 @@ public class WindowManager extends JFrame {
             apply.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if (attestationType.getText().equals("") ||
-                            grade.getText().equals("") ||
+                    if (grade.getText().equals("") ||
                             subject.getText().equals("") ||
                             date.getText().equals("") ||
                             teacherName.getText().equals(""))
@@ -391,7 +445,7 @@ public class WindowManager extends JFrame {
                     }
 
                     Attestation attestation;
-                    if (attestationType.getText().equals("экзамен")) {
+                    if (attestationType.getSelectedItem().equals("экзамен")) {
                         attestation = new Exam(subject.getText(), date.getText(), teacherName.getText());
                     }
                     else {
@@ -415,7 +469,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class showMarksButtonListener extends JFrame implements ActionListener {
+    private class ShowMarksButtonListener extends JFrame implements ActionListener {
         int row;
 
         @Override
@@ -426,7 +480,6 @@ public class WindowManager extends JFrame {
                 return;
             }
 
-            //gradeTableInit();
             setContentPane(new JScrollPane(markTable));
             markModel.setRows(model.getMarksCount(row));
             markModel.setIndex(row);
@@ -440,7 +493,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class search extends JFrame implements ActionListener {
+    private class SearchButtonListener extends JFrame implements ActionListener {
         JTextField id, name, group, enrolDate, phoneNumber, birthDate;
         JLabel idL, nameL, groupIdL, enrolL, phoneL, birthL;
         JButton apply, cancel;
@@ -523,8 +576,52 @@ public class WindowManager extends JFrame {
             setContentPane(searchPanel);
         }
 
+        public void fieldsActionsInit() {
+            id.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            name.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            group.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            enrolDate.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            phoneNumber.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+            birthDate.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    apply.doClick();
+                }
+            });
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(frame, "В таблице нет записей");
+                return;
+            }
+
             setTitle("Найти записи");
 
             idL = new JLabel("Зачетный номер");
@@ -585,7 +682,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class writeFileSelector implements ActionListener {
+    private class WriteFileSelector implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -600,7 +697,7 @@ public class WindowManager extends JFrame {
         }
     }
 
-    private class readFileSelector implements ActionListener {
+    private class ReadFileSelector implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -684,6 +781,61 @@ public class WindowManager extends JFrame {
         } catch (IOException fileNotFoundException) {
             fileNotFoundException.printStackTrace();
         }
+    }
+
+    private class DataKeyAdapter extends KeyAdapter {
+        @Override
+        public void keyTyped(KeyEvent e) {
+            if (((JTextField)e.getSource()).getText().length() > 7) ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText().substring(0, 7));
+        }
+
+        @Override
+        public void keyPressed(KeyEvent e) {
+            if ((((JTextField)e.getSource()).getText().length() == 2 || ((JTextField)e.getSource()).getText().length() == 5)
+                    && e.getKeyChar() != KeyEvent.VK_BACK_SPACE) {
+                ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText() + ":");
+            }
+        }
+
+        @Override
+        public void keyReleased(KeyEvent e) {
+            if (((JTextField)e.getSource()).getText().equals("")) return;
+            String[] arr = ((JTextField)e.getSource()).getText().split(":");
+            for (var item : arr) {
+                if (isNumber(item) == -1 && e.getKeyCode() != KeyEvent.VK_ENTER) {
+                    JOptionPane.showMessageDialog(frame, "В дате введены не числа");
+                    return;
+                }
+            }
+            if (arr.length >= 2 && arr[1].length() == 2) {
+                int monthNumber = isNumber(arr[1]);
+                int dayNumber = isNumber(arr[0]);
+
+                if (monthNumber > 12) {
+                    ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText().substring(0,3) + "12" + ((JTextField)e.getSource()).getText().substring(5));
+                }
+
+                if (monthNumber == 2 && dayNumber > 28) {
+                    ((JTextField)e.getSource()).setText("28" + ((JTextField)e.getSource()).getText().substring(2));
+                }
+                else if ((monthNumber == 4 || monthNumber == 6 || monthNumber == 9 || monthNumber == 11) && dayNumber > 30) {
+                    ((JTextField)e.getSource()).setText("30" + ((JTextField)e.getSource()).getText().substring(2));
+                }
+                else if (dayNumber > 31) {
+                    ((JTextField)e.getSource()).setText("31" + ((JTextField)e.getSource()).getText().substring(2));
+                }
+            }
+        }
+    }
+
+    private int isNumber(String stringToCheck) {
+        int result;
+        try {
+            result = Integer.parseInt(stringToCheck);
+        } catch (NumberFormatException ex) {
+            result = -1;
+        }
+        return result;
     }
 }
 
