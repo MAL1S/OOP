@@ -1,4 +1,4 @@
-package Students.Attestion;
+package Students.Attestation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,21 +19,6 @@ public class StudentManager implements StudentListManageable {
     @Override
     public void add(Student student) {
         studentList.add(student);
-    }
-
-    @Override
-    public void remove(Student student, Attestation attestation) {
-        for (Student stud : studentList) {
-            if (stud.getName().equals(student.getName())) {
-                List<Attestation> keys = new ArrayList<>(stud.getSessionMarks().keySet());
-
-                for (Attestation at : keys) {
-                    if (at.toString().equals(attestation.toString()) && at.equals(attestation)) {
-                        stud.deleteAttestation(attestation);
-                    }
-                }
-            }
-        }
     }
 
     @Override

@@ -1,8 +1,8 @@
 package View;
 
-import Students.Attestion.Attestation;
-import Students.Attestion.Student;
-import Students.Attestion.StudentManager;
+import Students.Attestation.Attestation;
+import Students.Attestation.Student;
+import Students.Attestation.StudentManager;
 
 import javax.swing.table.AbstractTableModel;
 

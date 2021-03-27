@@ -1,4 +1,4 @@
-package Students.Attestion;
+package Students.Attestation;
 
 public abstract class Attestation {
     protected String subject;

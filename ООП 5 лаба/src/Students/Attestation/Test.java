@@ -1,8 +1,6 @@
-package Students.Attestion;
+package Students.Attestation;
 
 public class Test extends Attestation {
-    private int ifPassed;
-
     public Test(String subject, String date, String teacherName) {
         super(subject, date, teacherName);
     }

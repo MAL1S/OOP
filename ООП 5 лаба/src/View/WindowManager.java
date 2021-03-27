@@ -1,9 +1,10 @@
 package View;
 
-import Students.Attestion.Attestation;
-import Students.Attestion.Exam;
-import Students.Attestion.Student;
-import Students.Attestion.Test;
+import Files.StudentFileManager;
+import Students.Attestation.Attestation;
+import Students.Attestation.Exam;
+import Students.Attestation.Student;
+import Students.Attestation.Test;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
@@ -422,6 +423,7 @@ public class WindowManager extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            setTitle("Добавить аттестацию");
             row = table.getSelectedRow();
             if (row == -1) {
                 JOptionPane.showMessageDialog(frame, "Вы не выбрали запись");
@@ -537,21 +539,22 @@ public class WindowManager extends JFrame {
                 sumOfMask += item.length();
             }
             if (tableData.length() < sumOfMask) return false;
-            if (arr.length == 1) {
+            if (arr.length == 1 && !mask.contains("*")) {
                 return tableData.equals(mask);
             }
-
-            if (!isFirstStar) {
+            if (isLastStar) {
                 for (int i = 0; i < arr[0].length(); i++) {
-                    if (tableData.charAt(i) != arr[0].charAt(i)) return false;
+                    if (tableData.charAt(i) != arr[0].charAt(i)) {
+                        System.out.println(tableData.charAt(i) + " " + arr[0].charAt(i));
+                        return false;
+                    }
                 }
             }
-            if (!isLastStar) {
+            if (isFirstStar) {
                 for (int i = tableData.length()-1, j = arr[arr.length-1].length()-1;
                      i > tableData.length()-1-arr[arr.length-1].length();
                      i--, j--)
                 {
-                    System.out.println(tableData + " " + arr[arr.length-1]);
                     if (tableData.charAt(i) != arr[arr.length-1].charAt(j)) return false;
                 }
             }
@@ -700,6 +703,7 @@ public class WindowManager extends JFrame {
                 }
             });
 
+            fieldsActionsInit();
             addingComponentsToPanel();
             setSize(400, 300);
             setResizable(false);
@@ -716,9 +720,9 @@ public class WindowManager extends JFrame {
             fc.setFileFilter(filter);
             if (fc.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 try (FileWriter fw = new FileWriter(fc.getSelectedFile())) {
-                    writeToFile(fw);
-                } catch (IOException fileNotFoundException) {
-                    fileNotFoundException.printStackTrace();
+                    StudentFileManager.writeToFile(fw, model, frame);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
             }
         }
@@ -733,81 +737,11 @@ public class WindowManager extends JFrame {
             fc.setFileFilter(filter);
             if (fc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                 try (FileReader fr = new FileReader(fc.getSelectedFile())) {
-                    readFromFile(fr);
-                } catch (IOException fileNotFoundException) {
-                    fileNotFoundException.printStackTrace();
+                    StudentFileManager.readFromFile(fr, model, frame);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(frame, ex.getMessage());
                 }
             }
-        }
-    }
-
-    private void writeToFile(FileWriter fw) {
-        try {
-            //ТУТ НАПИСАТЬ ПОДЗАГОЛОВКИ ТОГО, ЧТО ВЫВОДИТСЯ
-            BufferedWriter bw = new BufferedWriter(fw);
-            for (int i = 0; i < model.getRowCount(); i++) {
-                Student stud = model.getStudent(i);
-                bw.write(stud.getStudentId() + " " +
-                        stud.getName() + " " +
-                        stud.getGroup() + " " +
-                        stud.getEnrolDate() + " " +
-                        stud.getPhoneNumber() + " " +
-                        stud.getBirthDate() +
-                        "\n");
-                List<Attestation> list = new ArrayList<>(stud.getSessionMarks().keySet());
-                for (var item : list) {
-                    bw.write(item + " " +
-                            item.getSubject() + " " +
-                            stud.getSessionMarks().get(item) + " " +
-                            item.getDate() + " " +
-                            item.getTeacherName() +
-                            "\n");
-                }
-                bw.write("----------------------\n");
-            }
-            bw.close();
-        } catch (IOException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
-        }
-    }
-
-    private void readFromFile(FileReader fr) {
-        try {
-            model.clearAll();
-            BufferedReader br = new BufferedReader(fr);
-            String line;
-            int studInd = 0;
-            boolean studLine = true;
-            while ((line = br.readLine()) != null) {
-                if (line.charAt(0) == '-') {
-                    studLine = true;
-                    studInd++;
-                    continue;
-                }
-                String[] studentData = line.split(" ");
-                if (studLine) {
-                    for (int i = 0; i < model.getRowCount(); i++) {
-                        Student s = model.getStudent(i);
-                    }
-                    model.add(new Student(
-                            studentData[0],
-                            studentData[1] + " " + studentData[2] + " " + studentData[3],
-                            studentData[4],
-                            studentData[5],
-                            studentData[6],
-                            studentData[7]
-                    ));
-                    studLine = false;
-                }
-                else {
-                    Attestation at;
-                    if (studentData[0].equals("экзамен")) at = new Exam(studentData[1], studentData[3], studentData[4]);
-                    else at = new Test(studentData[1], studentData[3], studentData[4]);
-                    model.add(studInd,  at, studentData[2]);
-                }
-            }
-        } catch (IOException fileNotFoundException) {
-            fileNotFoundException.printStackTrace();
         }
     }
 
@@ -841,6 +775,13 @@ public class WindowManager extends JFrame {
 
                 if (monthNumber > 12) {
                     ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText().substring(0,3) + "12" + ((JTextField)e.getSource()).getText().substring(5));
+                }
+                else if (monthNumber == 0) {
+                    ((JTextField)e.getSource()).setText(((JTextField)e.getSource()).getText().substring(0,3) + "01" + ((JTextField)e.getSource()).getText().substring(5));
+                }
+
+                if (dayNumber == 0) {
+                    ((JTextField)e.getSource()).setText("01" + ((JTextField)e.getSource()).getText().substring(2));
                 }
 
                 if (monthNumber == 2 && dayNumber > 28) {
